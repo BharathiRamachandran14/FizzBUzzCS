@@ -1,40 +1,18 @@
 using System;
+using FizzBuzz.Rules;
 
 namespace FizzBuzz
 {
     class FizzBuzz
     {
-        private static bool IsDivisibleBy(int numerator, int denominator)
-        {
-            return numerator % denominator == 0;
-        }
+        List<Rule> rules = new List<Rule> { new RuleFor3(), new RuleFor5(), new RuleFor7(), new Rule()}; 
         public string FizzBuzzfor(int n)
         {
             string result="";
 
-            if (IsDivisibleBy(n,3))
+            foreach ( Rule rule in rules)
             {
-                result += "Fizz";
-            }
-
-            if (IsDivisibleBy(n,5))
-            {
-                result += "Buzz";
-            }
-
-            if (IsDivisibleBy(n,7))
-            {
-                result += "Bang";
-            }
-
-            if (IsDivisibleBy(n,11))
-            {
-                result = "Bong";
-            }
-
-            if (result == "")
-            {
-                result = n.ToString();
+                result =rule.Apply(n,result);
             }
 
             return result;
